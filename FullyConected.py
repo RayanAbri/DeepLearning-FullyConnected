@@ -3,8 +3,9 @@
 """
 Created on Wed Mar  6 13:33:30 2019
 
-@author: rahem
+@author: rayan Abri
 """
+#Classification Example based on keras and tensorflow
 
 #Similar to the MNIST digit dataset, the Fashion dataset includes:
 #
@@ -28,8 +29,8 @@ Created on Wed Mar  6 13:33:30 2019
 from keras.datasets import fashion_mnist
 from keras.utils import np_utils
 
-
-def Ciz_history(net):
+#to drow network history based on acc and loss
+def plot_history(net):
     history = net.history
     import matplotlib.pyplot as plt
     losses = history['loss']
@@ -43,10 +44,10 @@ def Ciz_history(net):
     plt.plot(accuracies)
 
 
-#data 
-
+#data preparation
 ((trainX, trainY), (testX, testY)) = fashion_mnist.load_data()
 
+#print the train set architecture
 print("Train set Images-> Main Shape :", trainX.shape)
 print("Train set Images-> dimension :", trainX.ndim)
 print("Train set Images-> data type :", trainX.dtype)
@@ -55,9 +56,11 @@ print("Train set labels-> Main Shape :", trainY.shape)
 print("Train set labels-> dimension :", trainY.ndim)
 print("Train set labels-> data type :", trainY.dtype)
 
-
-#resim = trainX[1124]
-#plt.imshow(resim, cmap='gray') #'binary' barakse color mape gray hastesh
+#to show a image of the train set
+#-------------------------------------------------------------------
+#pic = trainX[1124]
+#plt.imshow(resim, cmap='gray') #'binary' reverse of the gray scale
+#-------------------------------------------------------------------
 
 X_train = trainX.reshape(60000,784)
 X_test = testX.reshape(10000,784)
@@ -115,7 +118,7 @@ networkHistory=myModel.fit(X_train, Y_train, batch_size=128, epochs=10,callbacks
 #========================================================================
 
 
-Ciz_history(networkHistory)
+plot_history(networkHistory)
 
 # Evaluation
 
